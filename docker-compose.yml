@@ -1,0 +1,31 @@
+networks:
+  job_opportunities:
+
+services:
+  db:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    ports: 
+      - 1433:1433
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=YourPassword123
+      - MSSQL_PID=Developer
+      - MSSQL_AGENT_ENABLED=True
+    networks:
+      - job_opportunities
+  app:
+    build: 
+      context: .
+      dockerfile: Dockerfile.python
+    ports:
+      - 8888:8888
+    volumes:
+      - ./dev.ipynd:/dev.ipynb
+      - .job_opportunities.csv:/job_opportunities.csv
+      - ./README.md:/README.md
+      - ./job_opportunities_diagram.png:/job_opportunities_diagram.png
+    depends_on:
+      - db
+    networks:
+      - job_opportunities
+    command: ["CMD", ""]
