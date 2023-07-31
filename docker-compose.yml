@@ -28,4 +28,4 @@ services:
       - db
     networks:
       - job_opportunities
-    command: ["CMD", ""]
+    command: jupyter notebook --ip=0.0.0.0 --port=8888 --allow-root --notebook-dir=/ --no-browser --NotebookApp.token=''
