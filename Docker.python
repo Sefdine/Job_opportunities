@@ -1,0 +1,12 @@
+# Python base image
+FROM python:3
+
+# Copy and install the requirements
+COPY requirements.txt ./
+RUN pip install -r requirements.txt
+
+# Set the working directory
+WORKDIR /
+
+# Expose port for jupyter notebook
+EXPOSE 8888
