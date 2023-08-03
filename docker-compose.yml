@@ -4,7 +4,7 @@ networks:
 services:
   db:
     image: mcr.microsoft.com/mssql/server:2019-latest
-    ports: 
+    ports:
       - 1433:1433
     environment:
       - ACCEPT_EULA=Y
@@ -13,19 +13,19 @@ services:
       - MSSQL_AGENT_ENABLED=True
     networks:
       - job_opportunities
+
   app:
-    build: 
+    build:
       context: .
-      dockerfile: Dockerfile.python
+      dockerfile: docker/Dockerfile.python
     ports:
       - 8888:8888
     volumes:
-      - ./dev.ipynb:/home/data/dev.ipynb
-      - ./job_opportunities.csv:/home/data/job_opportunities.csv
-      - ./README.md:/home/data/README.md
-      - ./job_opportunities_diagram.png:/home/data/job_opportunities_diagram.png
+      - ./notebook/dev.ipynb:/home/notebook/dev.ipynb
+      - ./data/job_opportunities.csv:/home/data/job_opportunities.csv
+      - ./data/job_opportunities_diagram.png:/home/data/job_opportunities_diagram.png
     depends_on:
       - db
     networks:
       - job_opportunities
-    command: jupyter notebook --ip=0.0.0.0 --port=8888 --allow-root --notebook-dir=/home/data --no-browser --NotebookApp.token=''
+    command: jupyter notebook --ip=0.0.0.0 --port=8888 --allow-root --notebook-dir=/home/ --no-browser --NotebookApp.token=''
