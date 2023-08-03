@@ -5,6 +5,7 @@ pyodbc==4.0.39
 SQLAlchemy==2.0.19
 wordcloud
 matplotlib
+matplotlib-venn
 dash
 CurrencyConverter
 bokeh
