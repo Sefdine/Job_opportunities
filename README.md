@@ -48,7 +48,7 @@ The purpose of this project is to gain insights into the trends of the job marke
 1. Clone the repository from GitHub:
 
 ```bash
-git clone https://github.com/your-username/Job_opportunities.git
+git clone https://github.com/Sefdine/Job_opportunities.git
 ```
 2. Navigate to the project directory:
 
